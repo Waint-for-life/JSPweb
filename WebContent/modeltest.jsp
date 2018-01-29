@@ -11,7 +11,7 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="chengouxiang">
 
     <title>数控系统稳定性实验</title>
 
@@ -428,7 +428,7 @@
             							
             							<div class="tab-pane fade in active" id=<%="\"" + resultvector.get(i * numPerTab + j).tabid + "\"" %>>
             								<div class="row">
-							            		<div class="col-lg-6">
+							            		<div class="col-md-6">
 							            			<div class="panel panel-default">
 							            				<div class="panel-heading">
 							            					<%="设备号："+ res.sid %>
@@ -632,18 +632,9 @@
            		</div>
            		
           	</div>
-
-            
-            
-            </div>
-           		 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+		</div>
+           	<div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
+	</div>
 
     <!-- jQuery -->
     <script src="./vendor/jquery/jquery.min.js?v=1.1"></script>
