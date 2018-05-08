@@ -25,17 +25,18 @@
 </head>
 <body>
 <%
+	session.setAttribute("islogin", "0");	//设置登录标志，0表示未登录
 	String loginflag="";
 	try {
 		request.setCharacterEncoding("utf-8");
-		loginflag = request.getParameter("username");
+		loginflag = request.getParameter("username");	//logintest.jsp 可能传回两个参数，一个是username，一个是password，先尝试获得username
 		
 	}
 	catch(Exception e){
 	//
 	
 	}
-	if(loginflag == null)
+	if(loginflag == null)	//若得不到username，再尝试得到password
 	{
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -50,13 +51,15 @@
 		{
 			
 		}
-		else if(loginflag.equals("0")){
+		else if(loginflag.equals("0")){		//若得到password
 			out.print("<script language='javaScript'> alert('密码错误请重试');</script>");
 		}
 	}
-	else if(loginflag.equals("0")){
+	else if(loginflag.equals("0")){		//若得到username
 		out.print("<script language='javaScript'> alert('用户名不存在');</script>");
 	}
+	//若两者都未得到，则说明是第一次进入login页面，则说明都不执行
+	
 %>
 
 	<div class="container">
@@ -70,21 +73,24 @@
                         <form role="form" action="logintest.jsp">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="账号" name="username" type="username" autofocus>
+                                    <input class="form-control" id="login-username" placeholder="账号" name="username" type="username" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input class="form-control" id="login-password" placeholder="密码" name="password" type="password" value="">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div class="form-group">
-                                	<input class="btn btn-lg btn-success btn-block" type="submit" value="登录">
+                                	<input id="login-btn" class="btn btn-lg btn-success btn-block" type="submit" value="登录" onclick="return logintest();">
                                 </div>
                                 <!-- <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a> -->
                             </fieldset>
                         </form>
+                        
                     </div>
+                    <div class="panel-footer"><a href="#">数控系统可靠性实验发布app 下载（安卓系统）</a></div>
                 </div>
             </div>
+            
         </div>
     </div>
     <!-- jQuery -->
@@ -98,5 +104,24 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="./dist/js/sb-admin-2.js?v=1.1"></script>
+    
+    <script type="text/javascript">
+    	logintest = function() {
+			username = document.getElementById('login-username')
+			password = document.getElementById('login-password')
+			if(username.value == ""){
+				alert('用户名不能为空！')
+				return false;
+			}
+			if (password.value == ""){
+				alert('密码不能为空！')
+				return false;
+			}
+			loginbtn = document.getElementById('login-btn')
+			loginbtn.value = "正在登录。。"
+			loginbtn.classList.toggle('disabled')
+		}
+    </script>
+    
 </body>
 </html>
